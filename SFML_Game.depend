@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1474975835 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/main.cpp
+	<SFML/Graphics.hpp>
+	<string>
+	<iostream>
+
