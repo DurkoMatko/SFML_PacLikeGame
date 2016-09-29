@@ -1,0 +1,14 @@
+#ifndef PLAYERCHIBI_H
+#define PLAYERCHIBI_H
+
+
+class PlayerChibi
+{
+    public:
+        PlayerChibi();
+        virtual ~PlayerChibi();
+    protected:
+    private:
+};
+
+#endif // PLAYERCHIBI_H
