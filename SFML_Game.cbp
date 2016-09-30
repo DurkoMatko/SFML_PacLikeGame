@@ -13,7 +13,11 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="include" />
 				</Compiler>
+				<Linker>
+					<Add option="-lsfml-graphics -lsfml-window -lsfml-system" />
+				</Linker>
 			</Target>
 			<Target title="Release">
 				<Option output="bin/Release/SFML_Game" prefix_auto="1" extension_auto="1" />
@@ -22,6 +26,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -32,7 +37,11 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/PlayerChibi.h" />
+		<Unit filename="include/hh.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/PlayerChibi.cpp" />
+		<Unit filename="src/hh.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

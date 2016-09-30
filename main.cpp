@@ -2,6 +2,7 @@
 #include <string>
 #include <iostream>
 #include "include/PlayerChibi.h"
+#include "include/Board.h"
 
 using namespace std;
 using namespace sf;
@@ -12,9 +13,11 @@ int main()
     enum Directions{DOWN,LEFT,RIGHT,UP};
     Vector2i source(1,DOWN);
 
-    float frameCounter = 0, switchFrame=50, frameSpeed = 500;
-    Clock clock;
-    bool updateFrame;
+
+    Board board(0,50,500);
+
+    //float frameCounter = 0, switchFrame=50, frameSpeed = 500;
+    //bool updateFrame;
 
     // Game window
     RenderWindow window(VideoMode(1200, 800), "SFML works!");
@@ -29,7 +32,8 @@ int main()
     player.defineChibi("chibi4.png",wSize);
 
     //background picture
-    Texture bTexture;
+    board.setBackground("floor.jpg",window.getSize());
+    /*Texture bTexture;
     bTexture.setSmooth(true);
     bTexture.setRepeated(true);
     if(!bTexture.loadFromFile("floor.jpg")){
@@ -45,12 +49,14 @@ int main()
     backgroundRectangle.setOutlineColor(Color::Blue);
     backgroundRectangle.setOutlineThickness(50.0f);
     backgroundRectangle.setTexture(&bTexture);
-    backgroundRectangle.setTextureRect(IntRect(0,0,window.getSize().x*2*10,window.getSize().y*2*10));
+    backgroundRectangle.setTextureRect(IntRect(0,0,window.getSize().x*2*10,window.getSize().y*2*10));*/
 
     ///VIEW
-    View view;
-    view.reset(FloatRect(0,0,wSize.x,wSize.y));
-    view.setViewport(FloatRect(0,0,1.0f,1.0f));
+    //View view;
+    //view.reset(FloatRect(0,0,wSize.x,wSize.y));
+    //view.setViewport(FloatRect(0,0,1.0f,1.0f));
+    board.resetView(FloatRect(0,0,wSize.x,wSize.y));
+    board.setViewport(FloatRect(0,0,1.0f,1.0f));
 
     window.setKeyRepeatEnabled(true);
     while (window.isOpen())     //main game loop
@@ -91,50 +97,54 @@ int main()
         ///GETTING THE DIRECTION OF MOVEMENT FROM KEYBOARD ARROWS
         if(keyboard.isKeyPressed(keyboard.Up)){
             source.y=UP;
-            frameCounter += frameSpeed*clock.restart().asSeconds();
+            //frameCounter += frameSpeed*clock.restart().asSeconds();
+            board.setFrameCounter(board.getFrameCounter()+board.getFrameSpeed()*board.restartClock());
             player.movePlayer(Vector2i(0,-2));
         }
         else if(keyboard.isKeyPressed(keyboard.Down)){
             source.y=DOWN;
-            frameCounter += frameSpeed*clock.restart().asSeconds();
+            //frameCounter += frameSpeed*clock.restart().asSeconds();
+            board.setFrameCounter(board.getFrameCounter()+board.getFrameSpeed()*board.restartClock());
             player.movePlayer(Vector2i(0,2));
         }
         else if(keyboard.isKeyPressed(keyboard.Right)){
             source.y=RIGHT;
-            frameCounter += frameSpeed*clock.restart().asSeconds();
+            //frameCounter += frameSpeed*clock.restart().asSeconds();
+            board.setFrameCounter(board.getFrameCounter()+board.getFrameSpeed()*board.restartClock());
             player.movePlayer(Vector2i(2,0));
         }
         else if(keyboard.isKeyPressed(keyboard.Left)){
             source.y=LEFT;
-            frameCounter += frameSpeed*clock.restart().asSeconds();
+            //frameCounter += frameSpeed*clock.restart().asSeconds();
+            board.setFrameCounter(board.getFrameCounter()+board.getFrameSpeed()*board.restartClock());
             player.movePlayer(Vector2i(-2,0));
         }
 
 
         ///MOVING VIEW
-        if(player.getPosition().x < -700){
-            if(player.getPosition().y>500 || player.getPosition().y<-500){}
+        if(player.getPosition().x < -604){
+            if(player.getPosition().y>406 || player.getPosition().y<-406){}
             else{
-                view.reset(FloatRect(-700,player.getPosition().y,wSize.x,wSize.y));
+                board.resetView(FloatRect(-604,player.getPosition().y,wSize.x,wSize.y));
             }
         }
-        else if(player.getPosition().x>700)
-            if(player.getPosition().y>500 || player.getPosition().y<-500){}
+        else if(player.getPosition().x>604)
+            if(player.getPosition().y>406 || player.getPosition().y<-406){}
             else{
-                view.reset(FloatRect(700,player.getPosition().y,wSize.x,wSize.y));
+                board.resetView(FloatRect(604,player.getPosition().y,wSize.x,wSize.y));
             }
-        else if(player.getPosition().y>500)
-            view.reset(FloatRect(player.getPosition().x,500,wSize.x,wSize.y));
-        else if(player.getPosition().y<-500)
-            view.reset(FloatRect(player.getPosition().x,-500,wSize.x,wSize.y));
+        else if(player.getPosition().y>406)
+            board.resetView(FloatRect(player.getPosition().x,406,wSize.x,wSize.y));
+        else if(player.getPosition().y<-406)
+            board.resetView(FloatRect(player.getPosition().x,-406,wSize.x,wSize.y));
         else{
-            view.reset(FloatRect(player.getPosition().x,player.getPosition().y,wSize.x,wSize.y));
+            board.resetView(FloatRect(player.getPosition().x,player.getPosition().y,wSize.x,wSize.y));
         }
 
 
         ///CHANGING CHIBI
-        if(frameCounter >=switchFrame){
-            frameCounter=0;
+        if(board.getFrameCounter() >=board.getSwitchFrame()){
+            board.setFrameCounter(0);
             //animation...each cycle shifts displayed chibi by 64pixels to the right...if size of picture is smaller than current pixel position,
             // then go again from pixel 0.
             source.x++;
@@ -144,9 +154,9 @@ int main()
         }
 
 
-        window.setView(view);
+        window.setView(board.getView());
 
-        window.draw(backgroundRectangle);
+        window.draw(board.getBackgroundRectangle());
         player.setTexture(IntRect(source.x * 64, source.y *110, 64, 110));   //(start cropping X, start cropping Y, size in X, size in Y direction)
         window.draw(player.getPlayerImage());
         player.printCurrentPosition();

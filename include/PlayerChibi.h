@@ -1,4 +1,6 @@
 #include <SFML/Graphics.hpp>
+#include <iostream>
+#include <string>
 
 #ifndef PLAYERCHIBI_H
 #define PLAYERCHIBI_H
