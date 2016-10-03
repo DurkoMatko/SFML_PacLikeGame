@@ -1,4 +1,5 @@
 #include "Board.h"
+#include <SFML/Graphics.hpp>
 
 Board::Board()
 {
@@ -85,4 +86,25 @@ View Board::getView(){
 
 RectangleShape Board::getBackgroundRectangle(){
     return backgroundRectangle;
+}
+
+void Board::moveViewWithPlayer(Vector2i playerPosition, Vector2u wSize){
+    if(playerPosition.x < -604){
+        if(playerPosition.y>406 || playerPosition.y<-406){}
+        else{
+            resetView(FloatRect(-604,playerPosition.y,wSize.x,wSize.y));
+        }
+    }
+    else if(playerPosition.x>604)
+        if(playerPosition.y>406 || playerPosition.y<-406){}
+        else{
+            resetView(FloatRect(604,playerPosition.y,wSize.x,wSize.y));
+        }
+    else if(playerPosition.y>406)
+        resetView(FloatRect(playerPosition.x,406,wSize.x,wSize.y));
+    else if(playerPosition.y<-406)
+        resetView(FloatRect(playerPosition.x,-406,wSize.x,wSize.y));
+    else{
+        resetView(FloatRect(playerPosition.x,playerPosition.y,wSize.x,wSize.y));
+    }
 }

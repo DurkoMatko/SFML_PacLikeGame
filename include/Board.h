@@ -1,8 +1,12 @@
+#ifndef BOARD_H
+#define BOARD_H
+
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-#ifndef BOARD_H
-#define BOARD_H
+
+#define HEIGHT 800
+#define WIDTH 1200
 
 using namespace std;
 using namespace sf;
@@ -30,6 +34,7 @@ class Board
         void setBackground(string picture,Vector2u wSize);
         void resetView(FloatRect rect);
         void setViewport(FloatRect rect);
+        void moveViewWithPlayer(Vector2i playerPosition,Vector2u wSize);
 
     protected:
     private:
