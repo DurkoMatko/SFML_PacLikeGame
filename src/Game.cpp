@@ -92,7 +92,7 @@ void Game::RunGame(RenderWindow &window){
 
 
         ///MOVING VIEW
-        board.moveViewWithPlayer(player.getPosition(),Vector2u(WIDTH,HEIGHT));
+        board.moveViewWithPlayer(player.getRelativePosition(),Vector2u(WIDTH,HEIGHT));
 
 
 

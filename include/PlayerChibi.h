@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <string>
+#include "Board.h"
 
 
 using namespace sf;
@@ -15,7 +16,7 @@ class PlayerChibi
         PlayerChibi();
         virtual ~PlayerChibi();
         void defineChibi(String picture,Vector2u wSize);
-        Vector2i getPosition();
+        Vector2i getRelativePosition();
         void setPosition(Vector2i newPosition);
         void movePlayer(Vector2i change);
         void setTexture(IntRect pictureRectangle);

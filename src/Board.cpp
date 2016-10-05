@@ -89,21 +89,24 @@ RectangleShape Board::getBackgroundRectangle(){
 }
 
 void Board::moveViewWithPlayer(Vector2i playerPosition, Vector2u wSize){
-    if(playerPosition.x < -604){
-        if(playerPosition.y>406 || playerPosition.y<-406){}
+    int xBorder=WIDTH_VIEW_BORDER;      //no idea why using defined macro doesn't work directly
+    int yBorder=HEIGHT_VIEW_BORDER;
+
+    if(playerPosition.x < -xBorder){
+        if(playerPosition.y>yBorder || playerPosition.y<-yBorder){}
         else{
-            resetView(FloatRect(-604,playerPosition.y,wSize.x,wSize.y));
+            resetView(FloatRect(-xBorder,playerPosition.y,wSize.x,wSize.y));
         }
     }
-    else if(playerPosition.x>604)
-        if(playerPosition.y>406 || playerPosition.y<-406){}
+    else if(playerPosition.x>xBorder)
+        if(playerPosition.y>yBorder || playerPosition.y<-yBorder){}
         else{
-            resetView(FloatRect(604,playerPosition.y,wSize.x,wSize.y));
+            resetView(FloatRect(xBorder,playerPosition.y,wSize.x,wSize.y));
         }
-    else if(playerPosition.y>406)
-        resetView(FloatRect(playerPosition.x,406,wSize.x,wSize.y));
-    else if(playerPosition.y<-406)
-        resetView(FloatRect(playerPosition.x,-406,wSize.x,wSize.y));
+    else if(playerPosition.y>yBorder)
+        resetView(FloatRect(playerPosition.x,yBorder,wSize.x,wSize.y));
+    else if(playerPosition.y<-yBorder)
+        resetView(FloatRect(playerPosition.x,-yBorder,wSize.x,wSize.y));
     else{
         resetView(FloatRect(playerPosition.x,playerPosition.y,wSize.x,wSize.y));
     }

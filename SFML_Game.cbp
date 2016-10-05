@@ -38,10 +38,14 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="include/Board.h" />
+		<Unit filename="include/Game.h" />
+		<Unit filename="include/Menu.h" />
 		<Unit filename="include/PlayerChibi.h" />
 		<Unit filename="include/hh.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Board.cpp" />
+		<Unit filename="src/Game.cpp" />
+		<Unit filename="src/Menu.cpp" />
 		<Unit filename="src/PlayerChibi.cpp" />
 		<Unit filename="src/hh.cpp" />
 		<Extensions>

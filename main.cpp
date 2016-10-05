@@ -68,10 +68,10 @@ int main()
                                 break;
                         }
                     }
+                    break;
                 case Event::Closed:
                     window.close();
                     break;
-
              }
         }
         window.clear();

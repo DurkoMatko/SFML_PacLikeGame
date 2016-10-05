@@ -29,7 +29,7 @@ void PlayerChibi::defineChibi(String picture,Vector2u wSize){
     relativePosition.y=0;
 }
 
-Vector2i PlayerChibi::getPosition(){
+Vector2i PlayerChibi::getRelativePosition(){
     return relativePosition;
 }
 
@@ -38,9 +38,14 @@ void PlayerChibi::setPosition(Vector2i newPosition){
     relativePosition.y = newPosition.y;
 }
 void PlayerChibi::movePlayer(Vector2i change){
-    playerImage.move(change.x,change.y);
-    relativePosition.x += change.x;
-    relativePosition.y += change.y;
+    int xLimit = X_MOVEMENT_LIMIT;
+    int yLimit = Y_MOVEMENT_LIMIT;
+    if(relativePosition.x + change.x <xLimit && relativePosition.x + change.x > -xLimit &&
+       relativePosition.y + change.y < (yLimit-23) && relativePosition.y + change.y > -yLimit ){        //23 because feet have different position than head
+        playerImage.move(change.x,change.y);
+        relativePosition.x += change.x;
+        relativePosition.y += change.y;
+    }
 }
 void PlayerChibi::setTexture(IntRect pictureRectangle){
     playerImage.setTextureRect(pictureRectangle);

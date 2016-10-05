@@ -7,6 +7,10 @@
 
 #define HEIGHT 800
 #define WIDTH 1200
+#define WIDTH_VIEW_BORDER WIDTH/2+4
+#define HEIGHT_VIEW_BORDER HEIGHT/2+6
+#define X_MOVEMENT_LIMIT WIDTH-22
+#define Y_MOVEMENT_LIMIT HEIGHT-21
 
 using namespace std;
 using namespace sf;
