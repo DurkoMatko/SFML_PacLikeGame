@@ -19,6 +19,7 @@ class Menu
         void MoveUp();
         void MoveDown();
         int getPressedItem();
+        void show(RenderWindow &window);
     protected:
     private:
         int selectedItemIndex;

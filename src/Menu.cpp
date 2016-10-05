@@ -1,4 +1,6 @@
 #include "Menu.h"
+#include "Game.h"
+
 
 Menu::Menu(float width,float height)
 {
@@ -60,4 +62,51 @@ void Menu::MoveDown(){
 
 int Menu::getPressedItem(){
     return selectedItemIndex;
+}
+
+void Menu::show(RenderWindow &window){
+
+    ///MENU LOOP
+    while (window.isOpen())
+    {
+        Event event;
+        while (window.pollEvent(event))
+        {
+             switch(event.type){
+                case Event::KeyReleased:
+                    if(event.key.code==Keyboard::Up){
+                        this->MoveUp();
+                        cout << "Up" << endl;
+                    }
+                    else if(event.key.code==Keyboard::Down){
+                        this->MoveDown();
+                        cout << "Down" << endl;
+                    }
+                    else if(event.key.code==Keyboard::Return){
+                        switch(this->getPressedItem()){
+                            case 0:{
+                                cout << "New game" << endl;
+                                Game game;
+                                game.RunGame(window);
+                                break;
+                            }
+                            case 1:
+                                cout << "Options" << endl;
+                                break;
+                            case 2:
+                                window.close();
+                                break;
+                        }
+                    }
+                    break;
+                case Event::Closed:
+                    window.close();
+                    break;
+             }
+        }
+        window.clear();
+        this->draw(window);
+        window.display();
+    }
+
 }

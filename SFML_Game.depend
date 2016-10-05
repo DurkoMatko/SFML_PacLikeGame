@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1475506666 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/main.cpp
+1475690377 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/main.cpp
 	<SFML/Graphics.hpp>
 	<string>
 	<iostream>
@@ -36,12 +36,13 @@
 	"Board.h"
 	<SFML/Graphics.hpp>
 
-1475400183 /home/martin/Documents/Codeblocks_Projects/SFML_Game/include/Menu.h
+1475690164 /home/martin/Documents/Codeblocks_Projects/SFML_Game/include/Menu.h
 	<SFML/Graphics.hpp>
 	<iostream>
 
-1475403299 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/Menu.cpp
+1475690446 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/Menu.cpp
 	"Menu.h"
+	"Game.h"
 
 1475404060 /home/martin/Documents/Codeblocks_Projects/SFML_Game/include/Game.h
 	<SFML/Graphics.hpp>
