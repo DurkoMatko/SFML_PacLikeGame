@@ -49,18 +49,13 @@ void Game::runGame(RenderWindow &window){
                 case Event::Resized:
                     cout << "Width: " << event.size.width << "Height: " << event.size.height<< endl;
                     break;
-                case Event::TextEntered:
-                    if(event.text.unicode!=8)
-                        display += (char) event.text.unicode;
-                    else{
-                        display = display.substr(0,display.length()-1);
-                    }
-                    system("clear");
-                    cout << display << endl;
-                    break;
                 case Event::KeyPressed:
                     if(event.key.code == keyboard.Escape){
                         escape=true;
+                        break;
+                    }
+                    else if(event.key.code == keyboard.Space){      //shoot
+                        bulletsVector.push_back(Bullet(source.y,player.getPicturePosition()));
                         break;
                     }
             }
@@ -98,6 +93,11 @@ void Game::runGame(RenderWindow &window){
             enemiesVector[i].chasePlayer(player.getRelativePosition(),player.getPicturePosition());
         }
 
+        ///MOVE EACH BULLET IN ITS OWN DIRECTION
+        for(int i=0;i<bulletsVector.size();i++){
+            bulletsVector[i].moveBullet();
+        }
+
 
 
         ///MOVING VIEW
@@ -127,7 +127,7 @@ void Game::runGame(RenderWindow &window){
 
 
         ///PRINT POSITIONS
-        this->printPositions();
+        //this->printPositions();
 
 
         window.display();
@@ -137,12 +137,19 @@ void Game::runGame(RenderWindow &window){
 }
 
 void Game::drawAllMovingObjects(RenderWindow &window,Vector2i source){
+    //enemies
     for(int i=0;i<enemiesVector.size();i++){
         window.draw(enemiesVector[i].getEnemyPicture());
     }
+
+    //player
     player.setTexture(IntRect(source.x * 64, source.y *110, 64, 110));   //(start cropping X, start cropping Y, size in X, size in Y direction)
     window.draw(player.getPlayerImage());
 
+    //bullets
+    for(int i=0;i<bulletsVector.size();i++){
+        window.draw(bulletsVector[i].getBulletPicture());
+    }
 }
 
 void Game::printPositions(){
@@ -150,5 +157,6 @@ void Game::printPositions(){
     for(int i=0;i<enemiesVector.size();i++){
         enemiesVector[i].printCurrentPosition();
     }
+    cout << "Number of active bullets is " << bulletsVector.size() << endl;
     cout<<endl;
 }

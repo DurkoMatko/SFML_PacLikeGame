@@ -1,6 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include "Bullet.h"
 #include <SFML/Graphics.hpp>
 #include "Enemy.h"
 #include "PlayerChibi.h"
@@ -24,6 +25,7 @@ class Game
         vector<Enemy> enemiesVector;
         PlayerChibi player;
         Keyboard keyboard;
+        vector<Bullet> bulletsVector;
 
 };
 
