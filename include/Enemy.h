@@ -6,6 +6,8 @@
 #include <cstdlib>
 #include <ctime>
 
+#define HYPOTENUSE 25
+
 using namespace std;
 using namespace sf;
 

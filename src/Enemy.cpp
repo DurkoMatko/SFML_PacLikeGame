@@ -45,17 +45,14 @@ void Enemy::printCurrentPosition(){
 
 
 void Enemy::chasePlayer(Vector2i playerRelativePosition,Vector2f playerPicturePosition){
-    signed int x=playerRelativePosition.x - relativePosition.x;
-    cout << "x:" << x<< endl;
-    signed int y=playerRelativePosition.y - relativePosition.y;
-    cout << "y:" << y<< endl;
-    float v=sqrt(x*x + y*y);
-    cout << "v:" << v<< endl;
-    float unitx=x/v;
-    cout << "unitx:" << unitx<< endl;
-    float unity=y/v;
-    cout << "unity:" << unity<< endl;
-    this->moveEnemy(Vector2f(unitx,unity));
+    signed int x=playerRelativePosition.x - relativePosition.x;         // vector in x direction
+    signed int y=playerRelativePosition.y+20 - relativePosition.y;      //vector in y direction
+    if(x*x+y*y>HYPOTENUSE*HYPOTENUSE || x*x+y*y<-HYPOTENUSE*HYPOTENUSE){    //so v is bigger than defined minimal hypotenuse
+        float v=sqrt(x*x + y*y);
+        float unitx=x/v;
+        float unity=y/v;
+        this->moveEnemy(Vector2f(unitx,unity));
+    }
 }
 
 void Enemy::moveEnemy(Vector2f change){

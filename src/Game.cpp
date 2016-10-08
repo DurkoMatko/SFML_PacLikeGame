@@ -1,8 +1,6 @@
 #include "Game.h"
 #include "Menu.h"
-#include "Enemy.h"
 #include "Board.h"
-#include "PlayerChibi.h"
 #include <string>
 #include <stdlib.h>
 #include <iostream>
@@ -17,13 +15,11 @@ Game::~Game()
     //dtor
 }
 
-void Game::RunGame(RenderWindow &window){
-    Keyboard keyboard;
+void Game::runGame(RenderWindow &window){
     string display = "";
     Vector2i source(1,DOWN);
 
     ///player picture
-    PlayerChibi player;
     player.defineChibi("chibi4.png",Vector2u(WIDTH,HEIGHT));
 
     ///Board + background + initial view
@@ -34,8 +30,7 @@ void Game::RunGame(RenderWindow &window){
 
     ///Enemies
     srand(time(0));   //clock for random position generator
-    vector<Enemy> enemiesVector;
-    enemiesVector.resize(1);
+    enemiesVector.resize(4);
 
     window.setKeyRepeatEnabled(true);
 
@@ -128,18 +123,12 @@ void Game::RunGame(RenderWindow &window){
 
         ///DRAW STUFF
         window.draw(board.getBackgroundRectangle());
-        for(int i=0;i<enemiesVector.size();i++){
-            window.draw(enemiesVector[i].getEnemyPicture());
-        }
-        player.setTexture(IntRect(source.x * 64, source.y *110, 64, 110));   //(start cropping X, start cropping Y, size in X, size in Y direction)
-        window.draw(player.getPlayerImage());
+        this->drawAllMovingObjects(window,source);
+
 
         ///PRINT POSITIONS
-        player.printCurrentPosition();
-        for(int i=0;i<enemiesVector.size();i++){
-            enemiesVector[i].printCurrentPosition();
-        }
-        cout<<endl;
+        this->printPositions();
+
 
         window.display();
         window.clear();
@@ -147,5 +136,19 @@ void Game::RunGame(RenderWindow &window){
     }
 }
 
-void Game::dd(){
+void Game::drawAllMovingObjects(RenderWindow &window,Vector2i source){
+    for(int i=0;i<enemiesVector.size();i++){
+        window.draw(enemiesVector[i].getEnemyPicture());
+    }
+    player.setTexture(IntRect(source.x * 64, source.y *110, 64, 110));   //(start cropping X, start cropping Y, size in X, size in Y direction)
+    window.draw(player.getPlayerImage());
+
+}
+
+void Game::printPositions(){
+    player.printCurrentPosition();
+    for(int i=0;i<enemiesVector.size();i++){
+        enemiesVector[i].printCurrentPosition();
+    }
+    cout<<endl;
 }

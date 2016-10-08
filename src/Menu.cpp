@@ -87,7 +87,7 @@ void Menu::show(RenderWindow &window){
                             case 0:{
                                 cout << "New game" << endl;
                                 Game game;
-                                game.RunGame(window);
+                                game.runGame(window);
                                 break;
                             }
                             case 1:
