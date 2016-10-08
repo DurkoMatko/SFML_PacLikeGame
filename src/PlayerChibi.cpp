@@ -23,7 +23,7 @@ void PlayerChibi::defineChibi(String picture,Vector2u wSize){
         cout << "Not able to load player image" << endl;
     }
     playerImage.setTexture(pTexture,true);
-    playerImage.setPosition(wSize.x/2 -32,wSize.y/2 - 55);   //coordinates of left upper corner need to be shifted by half of picture size
+    playerImage.setPosition(WIDTH/2 -32,HEIGHT/2 - 55);   //coordinates of left upper corner need to be shifted by half of picture size
 
     relativePosition.x=0;
     relativePosition.y=0;
@@ -61,6 +61,6 @@ Vector2f PlayerChibi::getPicturePosition(){
 }
 
 void PlayerChibi::printCurrentPosition(){
-     cout << "Pic position:X " << playerImage.getPosition().x << ", Y  " << playerImage.getPosition().y << endl;
-     cout << "Relative position:X " << relativePosition.x << ", Y  " << relativePosition.y << endl;
+     cout << "Player pic position:X " << playerImage.getPosition().x << ", Y  " << playerImage.getPosition().y << endl;
+     cout << "Player relative position:X " << relativePosition.x << ", Y  " << relativePosition.y << endl;
 }

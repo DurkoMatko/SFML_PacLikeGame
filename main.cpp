@@ -22,5 +22,5 @@ int main()
 
     menu.show(window);
 
-    return 0;
+    return EXIT_SUCCESS  ;
 }

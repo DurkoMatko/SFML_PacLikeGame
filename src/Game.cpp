@@ -1,8 +1,10 @@
 #include "Game.h"
 #include "Menu.h"
+#include "Enemy.h"
 #include "Board.h"
 #include "PlayerChibi.h"
 #include <string>
+#include <stdlib.h>
 #include <iostream>
 
 Game::Game()
@@ -30,6 +32,11 @@ void Game::RunGame(RenderWindow &window){
     board.resetView(FloatRect(0,0,WIDTH,HEIGHT));
     board.setViewport(FloatRect(0,0,1.0f,1.0f));
 
+    ///Enemies
+    srand(time(0));   //clock for random position generator
+    vector<Enemy> enemiesVector;
+    enemiesVector.resize(1);
+
     window.setKeyRepeatEnabled(true);
 
     while (window.isOpen() && !escape)     //main game loop
@@ -50,8 +57,9 @@ void Game::RunGame(RenderWindow &window){
                 case Event::TextEntered:
                     if(event.text.unicode!=8)
                         display += (char) event.text.unicode;
-                    else
+                    else{
                         display = display.substr(0,display.length()-1);
+                    }
                     system("clear");
                     cout << display << endl;
                     break;
@@ -62,7 +70,6 @@ void Game::RunGame(RenderWindow &window){
                     }
             }
         }
-        //mouse.isButtonPressed(mouse.Left))
 
         ///GETTING THE DIRECTION OF MOVEMENT FROM KEYBOARD ARROWS
         if(keyboard.isKeyPressed(keyboard.Up)){
@@ -91,6 +98,13 @@ void Game::RunGame(RenderWindow &window){
         }
 
 
+        ///MOVE EACH ENEMY IN PLAYER DIRECTION
+        for(int i=0;i<enemiesVector.size();i++){
+            enemiesVector[i].chasePlayer(player.getRelativePosition(),player.getPicturePosition());
+        }
+
+
+
         ///MOVING VIEW
         board.moveViewWithPlayer(player.getRelativePosition(),Vector2u(WIDTH,HEIGHT));
 
@@ -107,15 +121,25 @@ void Game::RunGame(RenderWindow &window){
             }
         }
 
-        if(escape==true){
+        if(escape==true){       //if NewGame chosen again than reset view to the middle
                 board.resetView(FloatRect(0, 0, WIDTH, HEIGHT));
         }
         window.setView(board.getView());
 
+        ///DRAW STUFF
         window.draw(board.getBackgroundRectangle());
+        for(int i=0;i<enemiesVector.size();i++){
+            window.draw(enemiesVector[i].getEnemyPicture());
+        }
         player.setTexture(IntRect(source.x * 64, source.y *110, 64, 110));   //(start cropping X, start cropping Y, size in X, size in Y direction)
         window.draw(player.getPlayerImage());
+
+        ///PRINT POSITIONS
         player.printCurrentPosition();
+        for(int i=0;i<enemiesVector.size();i++){
+            enemiesVector[i].printCurrentPosition();
+        }
+        cout<<endl;
 
         window.display();
         window.clear();
