@@ -94,10 +94,14 @@ void Game::runGame(RenderWindow &window){
         }
 
         ///MOVE EACH BULLET IN ITS OWN DIRECTION
-        for(int i=0;i<bulletsVector.size();i++){
-            bulletsVector[i].moveBullet();
+        if(bulletsVector.size()>0){
+            for(int i=0;i<bulletsVector.size();i++){
+                bulletsVector[i].moveBullet();
+            }
         }
 
+        ///CHECK BULLET & ENEMY HITS
+        this->checkBulletHits();
 
 
         ///MOVING VIEW
@@ -159,4 +163,17 @@ void Game::printPositions(){
     }
     cout << "Number of active bullets is " << bulletsVector.size() << endl;
     cout<<endl;
+}
+
+void Game::checkBulletHits(){
+    for(int i=0;i<bulletsVector.size();i++){
+        for(int j=0;j<enemiesVector.size();j++){
+            if(bulletsVector[i].getBulletPicture().getGlobalBounds().intersects(enemiesVector[j].getEnemyPicture().getGlobalBounds())){   //enemy and bullet rects intersect
+                bulletsVector.erase(bulletsVector.begin()+i);
+                enemiesVector.erase(enemiesVector.begin()+j);
+                enemiesVector.push_back(Enemy());
+                break;      //bullet kills just one enemy, therefore I need to break from inner loop
+            }
+        }
+    }
 }

@@ -37,6 +37,7 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="bullet.png" />
 		<Unit filename="include/Board.h" />
 		<Unit filename="include/Bullet.h" />
 		<Unit filename="include/Enemy.h" />

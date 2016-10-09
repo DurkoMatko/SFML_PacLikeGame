@@ -19,6 +19,7 @@ class Game
         void runGame(RenderWindow &window);
         void drawAllMovingObjects(RenderWindow &window,Vector2i source);
         void printPositions();
+        void checkBulletHits();
     protected:
     private:
         bool escape;
