@@ -36,33 +36,34 @@
 	"Board.h"
 	<SFML/Graphics.hpp>
 
-1475690164 /home/martin/Documents/Codeblocks_Projects/SFML_Game/include/Menu.h
+1476031968 /home/martin/Documents/Codeblocks_Projects/SFML_Game/include/Menu.h
 	<SFML/Graphics.hpp>
 	<iostream>
 
-1475932356 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/Menu.cpp
+1476027052 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/Menu.cpp
 	"Menu.h"
 	"Game.h"
 
-1476014477 /home/martin/Documents/Codeblocks_Projects/SFML_Game/include/Game.h
+1476036325 /home/martin/Documents/Codeblocks_Projects/SFML_Game/include/Game.h
 	"Bullet.h"
 	<SFML/Graphics.hpp>
 	"Enemy.h"
 	"PlayerChibi.h"
 
-1476014069 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/Game.cpp
+1476047850 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/Game.cpp
 	"Game.h"
 	"Menu.h"
 	"Board.h"
+	"tinyxml.h"
 	<string>
 	<stdlib.h>
 	<iostream>
 
-1475941565 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/Enemy.cpp
+1476048055 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/Enemy.cpp
 	"Enemy.h"
 	"Board.h"
 
-1475930988 /home/martin/Documents/Codeblocks_Projects/SFML_Game/include/Enemy.h
+1476048024 /home/martin/Documents/Codeblocks_Projects/SFML_Game/include/Enemy.h
 	<SFML/Graphics.hpp>
 	<iostream>
 	<cstdlib>
@@ -74,4 +75,9 @@
 1476014417 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/Bullet.cpp
 	"Bullet.h"
 	<iostream>
+
+1476029569 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/Settings.cpp
+	"Settings.h"
+
+1476029556 /home/martin/Documents/Codeblocks_Projects/SFML_Game/include/Settings.h
 

@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "Menu.h"
 #include "Board.h"
+#include "tinyxml.h"
 #include <string>
 #include <stdlib.h>
 #include <iostream>
@@ -16,8 +17,12 @@ Game::~Game()
 }
 
 void Game::runGame(RenderWindow &window){
-    string display = "";
     Vector2i source(1,DOWN);
+
+    ///READ CURRENT SETTINGS
+    if(!this->readAndSetSettings("GameSettings.xml")){
+        window.close();
+    }
 
     ///player picture
     player.defineChibi("chibi4.png",Vector2u(WIDTH,HEIGHT));
@@ -30,8 +35,7 @@ void Game::runGame(RenderWindow &window){
 
     ///Enemies
     srand(time(0));   //clock for random position generator
-    int numberOfEnemies = 5;
-    for(int i=0;i<numberOfEnemies;i++){
+    for(int i=0;i<enemyCount;i++){
         enemiesVector.push_back(new Enemy());
     }
 
@@ -58,7 +62,6 @@ void Game::runGame(RenderWindow &window){
                         break;
                     }
                     else if(event.key.code == keyboard.Space){      //shoot
-
                         bulletsVector.push_back(new Bullet(source.y,player.getPicturePosition()));
                         break;
                     }
@@ -89,8 +92,11 @@ void Game::runGame(RenderWindow &window){
 
 
         ///MOVE EACH ENEMY IN PLAYER DIRECTION
+        bool playerCaught=false;
         for(int i=0;i<enemiesVector.size();i++){
-            enemiesVector[i]->chasePlayer(player.getRelativePosition(),player.getPicturePosition());
+            if(enemiesVector[i]->chasePlayer(player.getRelativePosition(),player.getPicturePosition(),enemySpeed)){        //if player caught
+                escape=true;
+            }
         }
 
         ///MOVE EACH BULLET IN ITS OWN DIRECTION
@@ -173,11 +179,34 @@ void Game::checkBulletHits(){
     for(int i=0;i<bulletsVector.size();i++){
         for(int j=0;j<enemiesVector.size();j++){
             if(bulletsVector[i]->getBulletPicture().getGlobalBounds().intersects(enemiesVector[j]->getEnemyPicture().getGlobalBounds())){   //enemy and bullet rects intersect
-                bulletsVector.erase(bulletsVector.begin()+i);
+                delete bulletsVector[i];                            //delete object which pointer points to
+                delete enemiesVector[j];
+                bulletsVector.erase(bulletsVector.begin()+i);       //delete the actual pointer
                 enemiesVector.erase(enemiesVector.begin()+j);
-                enemiesVector.push_back(new Enemy());
-                break;      //bullet kills just one enemy, therefore I need to break from inner loop
+                enemiesVector.push_back(new Enemy());               //create new pointer to new object
+                break;                                              //bullet kills just one enemy, therefore I need to break from inner loop
             }
         }
     }
+}
+
+
+bool Game::readAndSetSettings(string filename){
+    TiXmlDocument doc(filename);
+    if(!doc.LoadFile()){
+        cout << "Error loading settings xml" << endl;
+        return false;
+    }
+    TiXmlHandle hDoc(&doc);
+    TiXmlElement *pRoot, *numberOfEnemiesNode,*speedNode;
+    pRoot = doc.FirstChildElement("GameSettings");
+    numberOfEnemiesNode = pRoot->FirstChildElement("numberOfEnemies");
+    speedNode = pRoot->FirstChildElement("enemySpeed");
+    if(pRoot && numberOfEnemiesNode && speedNode)
+    {
+        enemyCount=atoi(numberOfEnemiesNode->GetText());
+        enemySpeed=atoi(speedNode->GetText());
+        return true;
+    }
+    return false;
 }

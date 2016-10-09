@@ -19,7 +19,7 @@ class Enemy
         Sprite getEnemyPicture();
         Vector2f randomPosition();
         void printCurrentPosition();
-        void chasePlayer(Vector2i playerRelativePosition,Vector2f playerPicturePosition);
+        bool chasePlayer(Vector2i playerRelativePosition,Vector2f playerPicturePosition,int enemySpeed);
         void moveEnemy(Vector2f change);
     protected:
     private:

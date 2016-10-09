@@ -8,7 +8,7 @@ Menu::Menu(float width,float height)
         //handle error
     }
 
-    vector<std::string> fields = {"New game", "Highscore","Exit"};
+    vector<std::string> fields = {"New game", "Settings","Highscore","Exit"};
     selectedItemIndex=0;
 
     for(int i=0;i<NUMBER_OF_MENU_ITEMS;i++){
@@ -83,17 +83,19 @@ void Menu::show(RenderWindow &window){
                         cout << "Down" << endl;
                     }
                     else if(event.key.code==Keyboard::Return){
+                        string chosenOption = menu[this->getPressedItem()].getString();
+                        cout << chosenOption << endl;
                         switch(this->getPressedItem()){
                             case 0:{
-                                cout << "New game" << endl;
                                 Game game;
                                 game.runGame(window);
                                 break;
                             }
                             case 1:
-                                cout << "Options" << endl;
                                 break;
                             case 2:
+                                break;
+                            case 3:
                                 window.close();
                                 break;
                         }

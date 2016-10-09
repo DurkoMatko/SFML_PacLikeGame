@@ -21,9 +21,12 @@ class Game
         void printPositions();
         void checkBulletHits();
         void checkBulletsInView();
+        bool readAndSetSettings(string filename);
     protected:
     private:
         bool escape;
+        int enemyCount;
+        int enemySpeed;
         vector<Enemy*> enemiesVector;
         PlayerChibi player;
         Keyboard keyboard;

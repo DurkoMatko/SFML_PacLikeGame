@@ -4,7 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-#define NUMBER_OF_MENU_ITEMS 3
+#define NUMBER_OF_MENU_ITEMS 4
 
 using namespace sf;
 using namespace std;
