@@ -30,7 +30,10 @@ void Game::runGame(RenderWindow &window){
 
     ///Enemies
     srand(time(0));   //clock for random position generator
-    enemiesVector.resize(4);
+    int numberOfEnemies = 5;
+    for(int i=0;i<numberOfEnemies;i++){
+        enemiesVector.push_back(new Enemy());
+    }
 
     window.setKeyRepeatEnabled(true);
 
@@ -55,7 +58,8 @@ void Game::runGame(RenderWindow &window){
                         break;
                     }
                     else if(event.key.code == keyboard.Space){      //shoot
-                        bulletsVector.push_back(Bullet(source.y,player.getPicturePosition()));
+
+                        bulletsVector.push_back(new Bullet(source.y,player.getPicturePosition()));
                         break;
                     }
             }
@@ -64,25 +68,21 @@ void Game::runGame(RenderWindow &window){
         ///GETTING THE DIRECTION OF MOVEMENT FROM KEYBOARD ARROWS
         if(keyboard.isKeyPressed(keyboard.Up)){
             source.y=UP;
-            //frameCounter += frameSpeed*clock.restart().asSeconds();
             board.setFrameCounter(board.getFrameCounter()+board.getFrameSpeed()*board.restartClock());
             player.movePlayer(Vector2i(0,-2));
         }
         else if(keyboard.isKeyPressed(keyboard.Down)){
             source.y=DOWN;
-            //frameCounter += frameSpeed*clock.restart().asSeconds();
             board.setFrameCounter(board.getFrameCounter()+board.getFrameSpeed()*board.restartClock());
             player.movePlayer(Vector2i(0,2));
         }
         else if(keyboard.isKeyPressed(keyboard.Right)){
             source.y=RIGHT;
-            //frameCounter += frameSpeed*clock.restart().asSeconds();
             board.setFrameCounter(board.getFrameCounter()+board.getFrameSpeed()*board.restartClock());
             player.movePlayer(Vector2i(2,0));
         }
         else if(keyboard.isKeyPressed(keyboard.Left)){
             source.y=LEFT;
-            //frameCounter += frameSpeed*clock.restart().asSeconds();
             board.setFrameCounter(board.getFrameCounter()+board.getFrameSpeed()*board.restartClock());
             player.movePlayer(Vector2i(-2,0));
         }
@@ -90,18 +90,22 @@ void Game::runGame(RenderWindow &window){
 
         ///MOVE EACH ENEMY IN PLAYER DIRECTION
         for(int i=0;i<enemiesVector.size();i++){
-            enemiesVector[i].chasePlayer(player.getRelativePosition(),player.getPicturePosition());
+            enemiesVector[i]->chasePlayer(player.getRelativePosition(),player.getPicturePosition());
         }
 
         ///MOVE EACH BULLET IN ITS OWN DIRECTION
         if(bulletsVector.size()>0){
             for(int i=0;i<bulletsVector.size();i++){
-                bulletsVector[i].moveBullet();
+                bulletsVector[i]->moveBullet();
             }
         }
 
         ///CHECK BULLET & ENEMY HITS
         this->checkBulletHits();
+
+
+        ///DELETE BULLETS OUTSIDE OF VIEW
+        //this->checkBulletsInView();
 
 
         ///MOVING VIEW
@@ -131,7 +135,7 @@ void Game::runGame(RenderWindow &window){
 
 
         ///PRINT POSITIONS
-        //this->printPositions();
+        this->printPositions();
 
 
         window.display();
@@ -143,7 +147,7 @@ void Game::runGame(RenderWindow &window){
 void Game::drawAllMovingObjects(RenderWindow &window,Vector2i source){
     //enemies
     for(int i=0;i<enemiesVector.size();i++){
-        window.draw(enemiesVector[i].getEnemyPicture());
+        window.draw(enemiesVector[i]->getEnemyPicture());
     }
 
     //player
@@ -152,14 +156,14 @@ void Game::drawAllMovingObjects(RenderWindow &window,Vector2i source){
 
     //bullets
     for(int i=0;i<bulletsVector.size();i++){
-        window.draw(bulletsVector[i].getBulletPicture());
+        window.draw(bulletsVector[i]->getBulletPicture());
     }
 }
 
 void Game::printPositions(){
     player.printCurrentPosition();
     for(int i=0;i<enemiesVector.size();i++){
-        enemiesVector[i].printCurrentPosition();
+        enemiesVector[i]->printCurrentPosition();
     }
     cout << "Number of active bullets is " << bulletsVector.size() << endl;
     cout<<endl;
@@ -168,10 +172,10 @@ void Game::printPositions(){
 void Game::checkBulletHits(){
     for(int i=0;i<bulletsVector.size();i++){
         for(int j=0;j<enemiesVector.size();j++){
-            if(bulletsVector[i].getBulletPicture().getGlobalBounds().intersects(enemiesVector[j].getEnemyPicture().getGlobalBounds())){   //enemy and bullet rects intersect
+            if(bulletsVector[i]->getBulletPicture().getGlobalBounds().intersects(enemiesVector[j]->getEnemyPicture().getGlobalBounds())){   //enemy and bullet rects intersect
                 bulletsVector.erase(bulletsVector.begin()+i);
                 enemiesVector.erase(enemiesVector.begin()+j);
-                enemiesVector.push_back(Enemy());
+                enemiesVector.push_back(new Enemy());
                 break;      //bullet kills just one enemy, therefore I need to break from inner loop
             }
         }

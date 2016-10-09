@@ -20,13 +20,14 @@ class Game
         void drawAllMovingObjects(RenderWindow &window,Vector2i source);
         void printPositions();
         void checkBulletHits();
+        void checkBulletsInView();
     protected:
     private:
         bool escape;
-        vector<Enemy> enemiesVector;
+        vector<Enemy*> enemiesVector;
         PlayerChibi player;
         Keyboard keyboard;
-        vector<Bullet> bulletsVector;
+        vector<Bullet*> bulletsVector;      //needs to be a pointer because of scope - texture is created in different scope
 
 };
 

@@ -18,7 +18,7 @@ Bullet::Bullet(int direction,Vector2f playerPicturePosition)
     }
     this->bulletImage.setTexture(this->bTexture);
     this->bulletImage.setPosition(playerPicturePosition.x+20,playerPicturePosition.y+40);   //coordinates of left upper corner need to be shifted by half of picture size
-    this->bulletImage.scale(0.17,0.17);
+    this->bulletImage.scale(0.13,0.13);
 
     switch(direction){
         case 0: //down
@@ -28,13 +28,13 @@ Bullet::Bullet(int direction,Vector2f playerPicturePosition)
         case 1: //left
             directionVector=Vector2f(-1,0);
             break;
-        case 3: //right
+        case 3: //up
             directionVector=Vector2f(0,-1);
-            bulletImage.rotate(-90);
+            bulletImage.rotate(90);
             break;
-        case 2: //up
+        case 2: //right
             directionVector=Vector2f(1,0);
-            //bulletImage.rotate(-90);
+            bulletImage.rotate(180);
             break;
     }
 }
