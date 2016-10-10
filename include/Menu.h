@@ -12,9 +12,8 @@ using namespace std;
 class Menu
 {
     public:
-        Menu(float width,float height);
+        Menu();
         virtual ~Menu();
-
         void draw(RenderWindow &window);
         void MoveUp();
         void MoveDown();

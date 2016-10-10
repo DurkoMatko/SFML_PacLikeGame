@@ -27,6 +27,7 @@ class Game
         bool escape;
         int enemyCount;
         int enemySpeed;
+        int score;
         vector<Enemy*> enemiesVector;
         PlayerChibi player;
         Keyboard keyboard;

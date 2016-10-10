@@ -9,6 +9,7 @@
 Game::Game()
 {
     escape=false;
+    score=0;
 }
 
 Game::~Game()
@@ -184,6 +185,7 @@ void Game::checkBulletHits(){
                 bulletsVector.erase(bulletsVector.begin()+i);       //delete the actual pointer
                 enemiesVector.erase(enemiesVector.begin()+j);
                 enemiesVector.push_back(new Enemy());               //create new pointer to new object
+                score++;
                 break;                                              //bullet kills just one enemy, therefore I need to break from inner loop
             }
         }

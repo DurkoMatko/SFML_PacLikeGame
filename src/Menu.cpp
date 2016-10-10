@@ -1,8 +1,9 @@
 #include "Menu.h"
 #include "Game.h"
+#include "Settings.h"
 
 
-Menu::Menu(float width,float height)
+Menu::Menu()
 {
     if(!font.loadFromFile("arial.ttf")){
         //handle error
@@ -14,7 +15,7 @@ Menu::Menu(float width,float height)
     for(int i=0;i<NUMBER_OF_MENU_ITEMS;i++){
         menu[i].setFont(font);
         menu[i].setString(fields[i]);
-        menu[i].setPosition(Vector2f(width/2-50,height/(NUMBER_OF_MENU_ITEMS)+50*i));
+        menu[i].setPosition(Vector2f(WIDTH/2-50,HEIGHT/(NUMBER_OF_MENU_ITEMS)+50*i));
 
         if(selectedItemIndex==i){
             menu[i].setColor(Color::Red);
@@ -28,7 +29,7 @@ Menu::Menu(float width,float height)
     title.setString("PacLikeGame");
     title.setColor(Color::White);
     title.setCharacterSize(50);
-    title.setPosition(width/2-130,70);
+    title.setPosition(WIDTH/2-130,70);
 
 }
 
@@ -91,8 +92,11 @@ void Menu::show(RenderWindow &window){
                                 game.runGame(window);
                                 break;
                             }
-                            case 1:
+                            case 1:{
+                                Settings settings;
+                                settings.show(window);
                                 break;
+                            }
                             case 2:
                                 break;
                             case 3:
