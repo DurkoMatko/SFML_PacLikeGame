@@ -30,7 +30,6 @@ Menu::Menu()
     title.setColor(Color::White);
     title.setCharacterSize(50);
     title.setPosition(WIDTH/2-130,70);
-
 }
 
 Menu::~Menu()
@@ -63,6 +62,10 @@ void Menu::MoveDown(){
 
 int Menu::getPressedItem(){
     return selectedItemIndex;
+}
+
+Font Menu::getFont(){
+    return font;
 }
 
 void Menu::show(RenderWindow &window){
@@ -114,5 +117,4 @@ void Menu::show(RenderWindow &window){
         this->draw(window);
         window.display();
     }
-
 }

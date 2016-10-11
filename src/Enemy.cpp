@@ -8,7 +8,7 @@ using namespace sf;
 Enemy::Enemy()
 {
     eTexture.setSmooth(true);
-    if(!eTexture.loadFromFile("enemy2.png")){
+    if(!eTexture.loadFromFile("Images/enemy2.png")){
         cout << "Not able to load enemy image" << endl;
     }
     enemyImage.setTexture(eTexture,true);

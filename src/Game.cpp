@@ -6,6 +6,7 @@
 #include <string>
 #include <stdlib.h>
 #include <iostream>
+#include<fstream>
 
 Game::Game()
 {
@@ -26,8 +27,13 @@ void Game::runGame(RenderWindow &window){
         window.close();
     }
 
+    ///LOAD FONT
+    if(!font.loadFromFile("arial.ttf")){
+        //handle error
+    }
+
     ///player picture
-    player.defineChibi("chibi4.png",Vector2u(WIDTH,HEIGHT));
+    player.defineChibi();
 
     ///Board + background + initial view
     Board board(0,50,500);
@@ -94,9 +100,12 @@ void Game::runGame(RenderWindow &window){
 
 
         ///MOVE EACH ENEMY IN PLAYER DIRECTION
-        bool playerCaught=false;
         for(int i=0;i<enemiesVector.size();i++){
             if(enemiesVector[i]->chasePlayer(player.getRelativePosition(),player.getPicturePosition(),enemySpeed)){        //if player caught
+                this->showLosingAnimation(window,board,source);
+                if(this->checkHighscore()){
+
+                }
                 escape=true;
             }
         }
@@ -140,6 +149,7 @@ void Game::runGame(RenderWindow &window){
         ///DRAW STUFF
         window.draw(board.getBackgroundRectangle());
         this->drawAllMovingObjects(window,source);
+        this->displayScore(window,board.getView());
 
 
         ///PRINT POSITIONS
@@ -226,3 +236,52 @@ void Game::checkBulletsInView(View view){
         }
     }
 }
+
+void Game::displayScore(RenderWindow &window, View view){
+    Text scoreText;
+    scoreText.setFont(font);
+    scoreText.setString("Score: "+to_string(score));
+    scoreText.setColor(Color::White);
+    scoreText.setPosition(view.getCenter().x-WIDTH/2,view.getCenter().y-HEIGHT/2);
+    window.draw(scoreText);
+}
+
+bool Game::checkHighscore(){
+    ifstream file("Highscore_1.txt");
+    string str;
+    int readScore;
+    stringstream strValue;
+    while (getline(file, str))
+    {
+        strValue << str.substr(str.find(" ") + 1);
+        strValue >> readScore;
+        if(score>readScore){
+            return true;
+        }
+    }
+    return false;
+}
+
+void Game::showLosingAnimation(RenderWindow &window,Board &board,Vector2i source){
+    Text loseText;
+    loseText.setString("Got caught!");
+    loseText.setColor(Color::Red);
+    loseText.setFont(font);
+    loseText.setRotation(-25);
+    loseText.setPosition(player.getPicturePosition().x,player.getPicturePosition().y);
+    int i=0;
+    while(i<200){
+        loseText.setCharacterSize(430-i*2);
+        cout << loseText.getCharacterSize() << endl;
+        window.draw(board.getBackgroundRectangle());
+        this->drawAllMovingObjects(window,source);
+        this->displayScore(window,board.getView());
+        window.draw(loseText);
+        window.display();
+        i++;
+    }
+    Time delayTime = seconds(3);
+    sleep(delayTime);
+}
+
+

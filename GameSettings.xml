@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <GameSettings>
-    <numberOfEnemies>0</numberOfEnemies>
+    <numberOfEnemies>7</numberOfEnemies>
     <enemySpeed>1</enemySpeed>
 </GameSettings>

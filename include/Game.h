@@ -22,6 +22,9 @@ class Game
         void checkBulletHits();
         void checkBulletsInView(View view);
         bool readAndSetSettings(string filename);
+        void displayScore(RenderWindow &window, View view);
+        bool checkHighscore();
+        void showLosingAnimation(RenderWindow &window,Board &board,Vector2i source);
     protected:
     private:
         bool escape;
@@ -32,6 +35,7 @@ class Game
         PlayerChibi player;
         Keyboard keyboard;
         vector<Bullet*> bulletsVector;      //needs to be a pointer because of scope - texture is created in different scope
+        Font font;
 
 };
 

@@ -13,7 +13,7 @@ Bullet::Bullet(int direction,Vector2f playerPicturePosition)
 {
 
     this->bTexture.setSmooth(true);
-    if(!this->bTexture.loadFromFile("bullet2.png")){
+    if(!this->bTexture.loadFromFile("Images/bullet2.png")){
         cout << "Not able to load bullet image" << endl;
     }
     this->bulletImage.setTexture(this->bTexture);

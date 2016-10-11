@@ -15,7 +15,7 @@ class PlayerChibi
     public:
         PlayerChibi();
         virtual ~PlayerChibi();
-        void defineChibi(String picture,Vector2u wSize);
+        void defineChibi();
         Vector2i getRelativePosition();
         void setPosition(Vector2i newPosition);
         void movePlayer(Vector2i change);

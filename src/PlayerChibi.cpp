@@ -17,9 +17,9 @@ PlayerChibi::~PlayerChibi()
 }
 
 
-void PlayerChibi::defineChibi(String picture,Vector2u wSize){
+void PlayerChibi::defineChibi(){
     pTexture.setSmooth(true);
-    if(!pTexture.loadFromFile("chibi4.png")){
+    if(!pTexture.loadFromFile("Images/chibi4.png")){
         cout << "Not able to load player image" << endl;
     }
     playerImage.setTexture(pTexture,true);

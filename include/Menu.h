@@ -17,6 +17,7 @@ class Menu
         void draw(RenderWindow &window);
         void MoveUp();
         void MoveDown();
+        Font getFont();
         int getPressedItem();
         void show(RenderWindow &window);
     protected:
