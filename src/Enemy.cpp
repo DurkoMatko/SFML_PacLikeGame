@@ -32,7 +32,7 @@ Vector2f Enemy::randomPosition(){
     cout << rand() << endl;
     Vector2f position;
 
-    position.x= 0 + (rand() % (WIDTH - 0 + 1));
+    position.x= 0 + (rand() % (WIDTH - 0 + 1));             //generate random number formula
     position.y= 0 + (rand() % (HEIGHT - 0 + 1));
     cout << position.x << " " << position.y << endl;
 	return position;
@@ -51,7 +51,7 @@ bool Enemy::chasePlayer(Vector2i playerRelativePosition,Vector2f playerPicturePo
         float v=sqrt(x*x + y*y);
         float unitx=x/v;
         float unity=y/v;
-        this->moveEnemy(Vector2f(unitx*enemySpeed,unity*enemySpeed));
+        this->moveEnemy(Vector2f(unitx*(1+enemySpeed/10),unity*(1+enemySpeed/10)));
         return false;
     }
     return true;

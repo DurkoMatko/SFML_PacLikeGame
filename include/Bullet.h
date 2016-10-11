@@ -13,6 +13,7 @@ class Bullet
         virtual ~Bullet();
         Sprite getBulletPicture();
         void moveBullet();
+        void printCurrentPosition();
     protected:
     private:
         Vector2f directionVector;

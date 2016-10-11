@@ -101,10 +101,12 @@ void Settings::increaseValue(){
 }
 
 void Settings::decreaseValue(){
-    decreaseButtons[selectedItemIndex]->setButtonColor(Color::Red);
     int oldValue;
     stringstream(valuesToChange[selectedItemIndex].getString()) >> oldValue;     //stream old value to get integer value
-    valuesToChange[selectedItemIndex].setString(to_string(oldValue-1));
+    if(oldValue>0){
+        valuesToChange[selectedItemIndex].setString(to_string(oldValue-1));
+        decreaseButtons[selectedItemIndex]->setButtonColor(Color::Red);
+    }
 }
 
 bool Settings::readSettings(){

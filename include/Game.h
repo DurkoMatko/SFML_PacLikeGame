@@ -20,7 +20,7 @@ class Game
         void drawAllMovingObjects(RenderWindow &window,Vector2i source);
         void printPositions();
         void checkBulletHits();
-        void checkBulletsInView();
+        void checkBulletsInView(View view);
         bool readAndSetSettings(string filename);
     protected:
     private:

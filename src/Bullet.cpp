@@ -52,3 +52,7 @@ void Bullet::moveBullet(){
     int speed = 3;
     bulletImage.move(directionVector.x*speed,directionVector.y*speed);
 }
+
+void Bullet::printCurrentPosition(){
+    cout << "Bullet position: " << bulletImage.getPosition().x << " " << bulletImage.getPosition().y << endl;
+}

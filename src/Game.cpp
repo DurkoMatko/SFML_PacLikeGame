@@ -113,7 +113,7 @@ void Game::runGame(RenderWindow &window){
 
 
         ///DELETE BULLETS OUTSIDE OF VIEW
-        //this->checkBulletsInView();
+        this->checkBulletsInView(board.getView());
 
 
         ///MOVING VIEW
@@ -174,6 +174,10 @@ void Game::printPositions(){
         enemiesVector[i]->printCurrentPosition();
     }
     cout << "Number of active bullets is " << bulletsVector.size() << endl;
+
+    for(int i=0;i<bulletsVector.size();i++){
+        bulletsVector[i]->printCurrentPosition();
+    }
     cout<<endl;
 }
 
@@ -211,4 +215,8 @@ bool Game::readAndSetSettings(string filename){
         return true;
     }
     return false;
+}
+
+void Game::checkBulletsInView(View view){
+    cout << "View: " << view.getCenter().x << " " << view.getCenter().y << endl;
 }
