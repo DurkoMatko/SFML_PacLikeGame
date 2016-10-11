@@ -51,11 +51,12 @@
 	"Enemy.h"
 	"PlayerChibi.h"
 
-1476048432 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/Game.cpp
+1476171727 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/Game.cpp
 	"Game.h"
 	"Menu.h"
 	"Board.h"
 	"tinyxml.h"
+	"tinyxml2.h"
 	<string>
 	<stdlib.h>
 	<iostream>
@@ -77,15 +78,18 @@
 	"Bullet.h"
 	<iostream>
 
-1476097455 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/Settings.cpp
+1476182123 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/Settings.cpp
 	"Settings.h"
 	"Board.h"
 	<iostream>
+	<sstream>
 
-1476097237 /home/martin/Documents/Codeblocks_Projects/SFML_Game/include/Settings.h
+1476172541 /home/martin/Documents/Codeblocks_Projects/SFML_Game/include/Settings.h
 	<SFML/Graphics.hpp>
 	"DecreaseSettingsButton.h"
 	"IncreaseSettingsButton.h"
+	"tinyxml2.h"
+	"tinyxml.h"
 
 1476096785 /home/martin/Documents/Codeblocks_Projects/SFML_Game/include/DecreaseSettingsButton.h
 	"SettingsButton.h"
@@ -97,7 +101,7 @@
 1476096940 /home/martin/Documents/Codeblocks_Projects/SFML_Game/include/SettingsButton.h
 	<SFML/Graphics.hpp>
 
-1476097286 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/IncreaseSettingsButton.cpp
+1476123864 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/IncreaseSettingsButton.cpp
 	"IncreaseSettingsButton.h"
 
 1476096794 /home/martin/Documents/Codeblocks_Projects/SFML_Game/include/IncreaseSettingsButton.h

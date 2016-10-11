@@ -4,11 +4,14 @@
 #include <SFML/Graphics.hpp>
 #include "DecreaseSettingsButton.h"
 #include "IncreaseSettingsButton.h"
+#include "tinyxml2.h"
+#include "tinyxml.h"
 
 #define NUMBER_OF_SETTING_ITEMS 4
 
 using namespace sf;
 using namespace std;
+using namespace tinyxml2;
 
 class Settings
 {
@@ -20,6 +23,10 @@ class Settings
         void MoveUp();
         void MoveDown();
         int getPressedItem();
+        void increaseValue();
+        void decreaseValue();
+        bool readSettings();
+        bool saveChanges();
     protected:
     private:
         bool escape;
@@ -27,8 +34,11 @@ class Settings
         Font font;
         Text menu[NUMBER_OF_SETTING_ITEMS];
         Text title;
+        vector<Text> valuesToChange;
         vector<DecreaseSettingsButton*> decreaseButtons;
         vector<IncreaseSettingsButton*> increaseButtons;
+        TiXmlDocument doc;
+        XMLDocument doc2;
 };
 
 #endif // SETTINGS_H

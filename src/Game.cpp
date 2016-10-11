@@ -2,6 +2,7 @@
 #include "Menu.h"
 #include "Board.h"
 #include "tinyxml.h"
+#include "tinyxml2.h"
 #include <string>
 #include <stdlib.h>
 #include <iostream>
@@ -199,7 +200,6 @@ bool Game::readAndSetSettings(string filename){
         cout << "Error loading settings xml" << endl;
         return false;
     }
-    TiXmlHandle hDoc(&doc);
     TiXmlElement *pRoot, *numberOfEnemiesNode,*speedNode;
     pRoot = doc.FirstChildElement("GameSettings");
     numberOfEnemiesNode = pRoot->FirstChildElement("numberOfEnemies");
