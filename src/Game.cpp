@@ -218,5 +218,11 @@ bool Game::readAndSetSettings(string filename){
 }
 
 void Game::checkBulletsInView(View view){
-    cout << "View: " << view.getCenter().x << " " << view.getCenter().y << endl;
+    FloatRect viewRect(view.getCenter().x-WIDTH/2,view.getCenter().y-HEIGHT/2,WIDTH,HEIGHT);        //create rectangle of current view
+    for(int i=0;i<bulletsVector.size();i++){
+        if(!bulletsVector[i]->getBulletPicture().getGlobalBounds().intersects(viewRect)){           //compare view rectangle with bullet sprite bounds
+            delete bulletsVector[i];
+            bulletsVector.erase(bulletsVector.begin()+i);
+        }
+    }
 }

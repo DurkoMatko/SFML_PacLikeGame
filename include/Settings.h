@@ -37,7 +37,6 @@ class Settings
         vector<Text> valuesToChange;
         vector<DecreaseSettingsButton*> decreaseButtons;
         vector<IncreaseSettingsButton*> increaseButtons;
-        TiXmlDocument doc;
         XMLDocument doc2;
 };
 
