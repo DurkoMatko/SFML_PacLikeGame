@@ -4,7 +4,6 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-
 #define HEIGHT 800
 #define WIDTH 1200
 #define WIDTH_VIEW_BORDER WIDTH/2+4

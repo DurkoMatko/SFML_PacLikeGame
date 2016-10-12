@@ -1,6 +1,7 @@
 #include "Menu.h"
 #include "Game.h"
 #include "Settings.h"
+#include "Highscore.h"
 
 
 Menu::Menu()
@@ -100,8 +101,11 @@ void Menu::show(RenderWindow &window){
                                 settings.show(window);
                                 break;
                             }
-                            case 2:
+                            case 2:{
+                                Highscore highscore;
+                                highscore.show(window);
                                 break;
+                            }
                             case 3:
                                 window.close();
                                 break;
