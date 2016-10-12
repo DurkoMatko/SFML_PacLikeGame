@@ -1,8 +1,9 @@
 #include "Game.h"
 #include "Menu.h"
 #include "Board.h"
-#include "tinyxml.h"
+#include "NewHighscore.h"
 #include "tinyxml2.h"
+#include "tinyxml.h"
 #include <string>
 #include <stdlib.h>
 #include <iostream>
@@ -104,7 +105,9 @@ void Game::runGame(RenderWindow &window){
             if(enemiesVector[i]->chasePlayer(player.getRelativePosition(),player.getPicturePosition(),enemySpeed)){        //if player caught
                 this->showLosingAnimation(window,board,source);
                 if(this->checkHighscore()){
-
+                    NewHighscore nhs(enemySpeed);
+                    nhs.enterName(window, font, board.getView());
+                    nhs.insertNewScore(score);
                 }
                 escape=true;
             }
@@ -147,9 +150,11 @@ void Game::runGame(RenderWindow &window){
         window.setView(board.getView());
 
         ///DRAW STUFF
-        window.draw(board.getBackgroundRectangle());
-        this->drawAllMovingObjects(window,source);
-        this->displayScore(window,board.getView());
+        if(!escape){
+            window.draw(board.getBackgroundRectangle());
+            this->drawAllMovingObjects(window,source);
+            this->displayScore(window,board.getView());
+        }
 
 
         ///PRINT POSITIONS
@@ -247,14 +252,13 @@ void Game::displayScore(RenderWindow &window, View view){
 }
 
 bool Game::checkHighscore(){
-    ifstream file("Highscore_1.txt");
+    ifstream file("Highscores/Highscore_" + to_string(enemySpeed) + ".txt");
     string str;
     int readScore;
     stringstream strValue;
     while (getline(file, str))
     {
-        strValue << str.substr(str.find(" ") + 1);
-        strValue >> readScore;
+        readScore =  atoi(str.substr(str.find(" ") + 1).c_str());
         if(score>readScore){
             return true;
         }
@@ -272,7 +276,6 @@ void Game::showLosingAnimation(RenderWindow &window,Board &board,Vector2i source
     int i=0;
     while(i<200){
         loseText.setCharacterSize(430-i*2);
-        cout << loseText.getCharacterSize() << endl;
         window.draw(board.getBackgroundRectangle());
         this->drawAllMovingObjects(window,source);
         this->displayScore(window,board.getView());
@@ -280,7 +283,7 @@ void Game::showLosingAnimation(RenderWindow &window,Board &board,Vector2i source
         window.display();
         i++;
     }
-    Time delayTime = seconds(3);
+    Time delayTime = seconds(1);
     sleep(delayTime);
 }
 

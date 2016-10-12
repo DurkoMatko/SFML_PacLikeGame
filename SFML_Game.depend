@@ -45,18 +45,19 @@
 	"Game.h"
 	"Settings.h"
 
-1476208785 /home/martin/Documents/Codeblocks_Projects/SFML_Game/include/Game.h
+1476286398 /home/martin/Documents/Codeblocks_Projects/SFML_Game/include/Game.h
 	"Bullet.h"
 	<SFML/Graphics.hpp>
 	"Enemy.h"
 	"PlayerChibi.h"
 
-1476209635 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/Game.cpp
+1476286554 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/Game.cpp
 	"Game.h"
 	"Menu.h"
 	"Board.h"
-	"tinyxml.h"
+	"NewHighscore.h"
 	"tinyxml2.h"
+	"tinyxml.h"
 	<string>
 	<stdlib.h>
 	<iostream>
@@ -79,7 +80,7 @@
 	"Bullet.h"
 	<iostream>
 
-1476183769 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/Settings.cpp
+1476287138 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/Settings.cpp
 	"Settings.h"
 	"Board.h"
 	<iostream>
@@ -110,4 +111,14 @@
 
 1476096572 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/SettingsButton.cpp
 	"SettingsButton.h"
+
+1476286340 /home/martin/Documents/Codeblocks_Projects/SFML_Game/include/NewHighscore.h
+	"Board.h"
+	<SFML/Graphics.hpp>
+	<iostream>
+
+1476286581 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/NewHighscore.cpp
+	"NewHighscore.h"
+	"Board.h"
+	<fstream>
 

@@ -94,10 +94,12 @@ void Settings::draw(RenderWindow &window){
 }
 
 void Settings::increaseValue(){
-    increaseButtons[selectedItemIndex]->setButtonColor(Color::Red);
     int oldValue;
     stringstream(valuesToChange[selectedItemIndex].getString()) >> oldValue;     //stream old value to get integer value
-    valuesToChange[selectedItemIndex].setString(to_string(oldValue+1));
+    if(oldValue<15 || selectedItemIndex!=1){                                     //speed max 15
+        increaseButtons[selectedItemIndex]->setButtonColor(Color::Red);
+        valuesToChange[selectedItemIndex].setString(to_string(oldValue+1));
+    }
 }
 
 void Settings::decreaseValue(){

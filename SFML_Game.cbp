@@ -17,6 +17,7 @@
 				</Compiler>
 				<Linker>
 					<Add option="-lsfml-graphics -lsfml-window -lsfml-system" />
+					<Add option="-ltinyxml -ltinyxml2" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -40,18 +41,28 @@
 		<Unit filename="bullet.png" />
 		<Unit filename="include/Board.h" />
 		<Unit filename="include/Bullet.h" />
+		<Unit filename="include/DecreaseSettingsButton.h" />
 		<Unit filename="include/Enemy.h" />
 		<Unit filename="include/Game.h" />
+		<Unit filename="include/IncreaseSettingsButton.h" />
 		<Unit filename="include/Menu.h" />
+		<Unit filename="include/NewHighscore.h" />
 		<Unit filename="include/PlayerChibi.h" />
+		<Unit filename="include/Settings.h" />
+		<Unit filename="include/SettingsButton.h" />
 		<Unit filename="include/hh.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Board.cpp" />
 		<Unit filename="src/Bullet.cpp" />
+		<Unit filename="src/DecreaseSettingsButton.cpp" />
 		<Unit filename="src/Enemy.cpp" />
 		<Unit filename="src/Game.cpp" />
+		<Unit filename="src/IncreaseSettingsButton.cpp" />
 		<Unit filename="src/Menu.cpp" />
+		<Unit filename="src/NewHighscore.cpp" />
 		<Unit filename="src/PlayerChibi.cpp" />
+		<Unit filename="src/Settings.cpp" />
+		<Unit filename="src/SettingsButton.cpp" />
 		<Unit filename="src/hh.cpp" />
 		<Extensions>
 			<code_completion />
