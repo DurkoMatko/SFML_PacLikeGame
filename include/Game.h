@@ -5,6 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include "Enemy.h"
 #include "PlayerChibi.h"
+#include "Ammunition.h"
 
 
 using namespace std;
@@ -23,19 +24,23 @@ class Game
         void checkBulletsInView(View view);
         bool readAndSetSettings(string filename);
         void displayScore(RenderWindow &window, View view);
+        void displayBullets(RenderWindow &window, View view);
         bool checkHighscore();
         void showLosingAnimation(RenderWindow &window,Board &board,Vector2i source);
+        void checkAmmunitionBox();
     protected:
     private:
         bool escape;
         int enemyCount;
         int enemySpeed;
         int score;
+        int remainingBullets;
         vector<Enemy*> enemiesVector;
         PlayerChibi player;
         Keyboard keyboard;
         vector<Bullet*> bulletsVector;      //needs to be a pointer because of scope - texture is created in different scope
         Font font;
+        Ammunition ammunitionBox;
 
 };
 

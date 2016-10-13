@@ -46,13 +46,14 @@
 	"Settings.h"
 	"Highscore.h"
 
-1476286398 /home/martin/Documents/Codeblocks_Projects/SFML_Game/include/Game.h
+1476388066 /home/martin/Documents/Codeblocks_Projects/SFML_Game/include/Game.h
 	"Bullet.h"
 	<SFML/Graphics.hpp>
 	"Enemy.h"
 	"PlayerChibi.h"
+	"Ammunition.h"
 
-1476287219 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/Game.cpp
+1476391196 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/Game.cpp
 	"Game.h"
 	"Menu.h"
 	"Board.h"
@@ -63,8 +64,9 @@
 	<stdlib.h>
 	<iostream>
 	<fstream>
+	<set>
 
-1476203789 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/Enemy.cpp
+1476377564 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/Enemy.cpp
 	"Enemy.h"
 	"Board.h"
 
@@ -123,7 +125,7 @@
 	"Board.h"
 	<fstream>
 
-1476311660 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/Highscore.cpp
+1476373163 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/Highscore.cpp
 	"Highscore.h"
 	"Board.h"
 	<fstream>
@@ -135,4 +137,13 @@
 	"Board.h"
 	<string>
 	<iostream>
+
+1476378032 /home/martin/Documents/Codeblocks_Projects/SFML_Game/include/Ammunition.h
+	<SFML/Graphics.hpp>
+
+1476378173 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/Ammunition.cpp
+	"Ammunition.h"
+	<SFML/Graphics.hpp>
+	<iostream>
+	"Board.h"
 

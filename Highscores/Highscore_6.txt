@@ -1,8 +1,8 @@
 xxx 35
 xxx 30
 xxx 25
+DurkoMatko 21
 xxx 20
 xxx 15
-xxx 10
-xxx 5
-xxx 2
+DurkoMatko 14
+DurkoMatko 11

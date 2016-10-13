@@ -8,11 +8,13 @@
 #include <stdlib.h>
 #include <iostream>
 #include<fstream>
+#include <set>
 
-Game::Game()
+Game::Game():ammunitionBox()
 {
     escape=false;
     score=0;
+    remainingBullets=20;
 }
 
 Game::~Game()
@@ -22,6 +24,9 @@ Game::~Game()
 
 void Game::runGame(RenderWindow &window){
     Vector2i source(1,DOWN);
+    Clock clock;
+    set<int> generatedTimes;
+    set<int> ammunitionTimes;
 
     ///READ CURRENT SETTINGS
     if(!this->readAndSetSettings("GameSettings.xml")){
@@ -70,8 +75,9 @@ void Game::runGame(RenderWindow &window){
                         escape=true;
                         break;
                     }
-                    else if(event.key.code == keyboard.Space){      //shoot
+                    else if(event.key.code == keyboard.Space && remainingBullets>0){      //shoot
                         bulletsVector.push_back(new Bullet(source.y,player.getPicturePosition()));
+                        remainingBullets--;
                         break;
                     }
             }
@@ -124,6 +130,22 @@ void Game::runGame(RenderWindow &window){
         this->checkBulletHits();
 
 
+        ///INCREASE NUMBER OF ENEMIES EACH 10 SECONDS
+        if(static_cast<int>(clock.getElapsedTime().asSeconds()) %10 ==0 && static_cast<int>(clock.getElapsedTime().asSeconds()) != 0 && (generatedTimes.find(static_cast<int>(clock.getElapsedTime().asSeconds())) == generatedTimes.end())){
+            enemiesVector.push_back(new Enemy());               //create new pointer to new object
+            generatedTimes.insert(static_cast<int>(clock.getElapsedTime().asSeconds()));            //so in 10th second only one is generated - not 15 because of all the cycles
+        }
+
+
+        ///CHANGE AMMUNITION PACK POSITION EACH 30 SECS
+         if(static_cast<int>(clock.getElapsedTime().asSeconds()) %30 ==0 && static_cast<int>(clock.getElapsedTime().asSeconds()) != 0 && (ammunitionTimes.find(static_cast<int>(clock.getElapsedTime().asSeconds())) == ammunitionTimes.end())){
+            ammunitionBox.setRandomPosition();
+            ammunitionTimes.insert(static_cast<int>(clock.getElapsedTime().asSeconds()));            //so in 10th second only one is generated - not 15 because of all the cycles
+        }
+
+        ///CHECK IF PLAYER TAKES AMMUNITION BOX
+        this->checkAmmunitionBox();
+
         ///DELETE BULLETS OUTSIDE OF VIEW
         this->checkBulletsInView(board.getView());
 
@@ -149,11 +171,20 @@ void Game::runGame(RenderWindow &window){
         }
         window.setView(board.getView());
 
+        sf::VertexArray line(LinesStrip, 2);
+        line[0].position = player.getPicturePosition();
+        line[0].color  = sf::Color::Red;
+        line[1].position = ammunitionBox.getAmmunitionPicture().getPosition();
+        line[1].color = sf::Color::Green;
+
         ///DRAW STUFF
         if(!escape){
             window.draw(board.getBackgroundRectangle());
+            window.draw(ammunitionBox.getAmmunitionPicture());
+            window.draw(line);
             this->drawAllMovingObjects(window,source);
             this->displayScore(window,board.getView());
+            this->displayBullets(window,board.getView());
         }
 
 
@@ -251,6 +282,15 @@ void Game::displayScore(RenderWindow &window, View view){
     window.draw(scoreText);
 }
 
+void Game::displayBullets(RenderWindow &window, View view){
+    Text bulletsText;
+    bulletsText.setFont(font);
+    bulletsText.setString("Bullets: "+to_string(remainingBullets));
+    bulletsText.setColor(Color::White);
+    bulletsText.setPosition(view.getCenter().x+WIDTH/2-170,view.getCenter().y-HEIGHT/2);
+    window.draw(bulletsText);
+}
+
 bool Game::checkHighscore(){
     ifstream file("Highscores/Highscore_" + to_string(enemySpeed) + ".txt");
     string str;
@@ -287,4 +327,10 @@ void Game::showLosingAnimation(RenderWindow &window,Board &board,Vector2i source
     sleep(delayTime);
 }
 
+void Game::checkAmmunitionBox(){
+    if(player.getPlayerImage().getGlobalBounds().intersects(ammunitionBox.getAmmunitionPicture().getGlobalBounds())){
+        remainingBullets = remainingBullets + rand() % (2*(enemySpeed+enemiesVector.size()));
+        ammunitionBox.setRandomPosition();
+    }
+}
 

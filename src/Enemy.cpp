@@ -29,12 +29,10 @@ Sprite Enemy::getEnemyPicture(){
 }
 
 Vector2f Enemy::randomPosition(){
-    cout << rand() << endl;
     Vector2f position;
 
     position.x= 0 + (rand() % (WIDTH - 0 + 1));             //generate random number formula
     position.y= 0 + (rand() % (HEIGHT - 0 + 1));
-    cout << position.x << " " << position.y << endl;
 	return position;
 }
 
