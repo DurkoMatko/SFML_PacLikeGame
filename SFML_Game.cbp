@@ -39,6 +39,7 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="bullet.png" />
+		<Unit filename="include/Ammunition.h" />
 		<Unit filename="include/Board.h" />
 		<Unit filename="include/Bullet.h" />
 		<Unit filename="include/DecreaseSettingsButton.h" />
@@ -52,11 +53,13 @@
 		<Unit filename="include/SettingsButton.h" />
 		<Unit filename="include/hh.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Ammunition.cpp" />
 		<Unit filename="src/Board.cpp" />
 		<Unit filename="src/Bullet.cpp" />
 		<Unit filename="src/DecreaseSettingsButton.cpp" />
 		<Unit filename="src/Enemy.cpp" />
 		<Unit filename="src/Game.cpp" />
+		<Unit filename="src/Highscore.cpp" />
 		<Unit filename="src/IncreaseSettingsButton.cpp" />
 		<Unit filename="src/Menu.cpp" />
 		<Unit filename="src/NewHighscore.cpp" />

@@ -181,6 +181,7 @@ void Game::runGame(RenderWindow &window){
         if(!escape){
             window.draw(board.getBackgroundRectangle());
             window.draw(ammunitionBox.getAmmunitionPicture());
+            this->calculateAndDrawPointer(window,board.getView());
             window.draw(line);
             this->drawAllMovingObjects(window,source);
             this->displayScore(window,board.getView());
@@ -334,3 +335,41 @@ void Game::checkAmmunitionBox(){
     }
 }
 
+void Game::calculateAndDrawPointer(RenderWindow &window, View view){
+    FloatRect viewRect(view.getCenter().x-view.getSize().x/2,view.getCenter().y-HEIGHT/2,view.getSize().x,HEIGHT);        //create rectangle of current view
+    //if(!ammunitionBox.getAmmunitionPicture().getGlobalBounds().intersects(viewRect)){
+        pair<float,float> playerAmmunitionEquation = this->findEquation(ammunitionBox.getAmmunitionPicture().getPosition().x,ammunitionBox.getAmmunitionPicture().getPosition().y,player.getPicturePosition().x,player.getPicturePosition().y);
+
+        CircleShape pointer;
+        pointer.setRadius(200);
+        pointer.setFillColor(Color::Red);
+        pointer.setOutlineColor(sf::Color::Red);
+        pointer.setOutlineThickness(5);
+    //}
+}
+
+pair<float,float> Game::findEquation(float x1, float y1, float x2, float y2){
+    float dx = x1 - x2;
+    float dy = y1 - y2;
+
+    float slope = dy/dx;
+    float intercept = y2 - slope*x2;
+
+    return pair<float,float>(slope,intercept);
+}
+
+Vector2f Game::findIntersectionPoint(float slope1,float intersect1, float slope2, float intersect2){
+    float backPropagation_slope=slope1;
+    float backPropagation_intersect=intersect1;
+
+    slope1=slope1 + slope2*(-1);       //remove coefficient with x from one side
+    slope2=0;
+
+    intersect2 = intersect2 + intersect1*(-1);
+    intersect1=0;
+
+    Vector2f intersectionPoint;
+    intersectionPoint.x = intersect2/slope1;
+    intersectionPoint.y = backPropagation_slope*intersectionPoint.x + backPropagation_intersect;
+    return intersectionPoint;
+}

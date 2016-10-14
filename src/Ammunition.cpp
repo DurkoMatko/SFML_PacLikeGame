@@ -4,6 +4,8 @@
 #include <iostream>
 #include "Board.h"
 
+
+
 using namespace std;
 
 Ammunition::Ammunition()
@@ -30,8 +32,8 @@ Sprite Ammunition::getAmmunitionPicture(){
 Vector2f Ammunition::setRandomPosition(){
     Vector2f position;
 
-    position.x= 0 + (rand() % (2400 - 0 + 1)) -1700;             //generate random number formula
-    position.y= 0 + (rand() % (1200 - 0 + 1)) -400;
+    position.x= MIN_X + (rand() % (MAX_X - MIN_X + 1));             //generate random number formula
+    position.y= MIN_Y + (rand() % (MAX_Y - MIN_Y + 1));
 
     cout << position.x << " " << position.y << endl;
     ammunitionImage.setPosition(position);

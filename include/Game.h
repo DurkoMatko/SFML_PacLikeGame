@@ -28,6 +28,9 @@ class Game
         bool checkHighscore();
         void showLosingAnimation(RenderWindow &window,Board &board,Vector2i source);
         void checkAmmunitionBox();
+        void calculateAndDrawPointer(RenderWindow &window, View view);
+        pair<float,float> findEquation(float x1, float y1, float x2, float y2);
+        Vector2f findIntersectionPoint(float slope1,float intersect1, float slope2, float intersect2);
     protected:
     private:
         bool escape;

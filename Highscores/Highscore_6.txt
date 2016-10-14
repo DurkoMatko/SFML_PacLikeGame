@@ -1,8 +1,7 @@
+ 152
 xxx 35
+DurkoMatko 31
 xxx 30
 xxx 25
 DurkoMatko 21
 xxx 20
-xxx 15
-DurkoMatko 14
-DurkoMatko 11

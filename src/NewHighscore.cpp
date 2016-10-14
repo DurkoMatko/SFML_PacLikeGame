@@ -4,6 +4,7 @@
 
 NewHighscore::NewHighscore(int atSpeed)
 {
+    escape=false;
     border.setSize(Vector2f(WIDTH/2,60));           //60 seems enough - just random number
     border.setFillColor(Color::Black);
     border.setOutlineColor(Color::White);

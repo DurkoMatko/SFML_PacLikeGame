@@ -4,5 +4,5 @@ xxx 25
 xxx 20
 xxx 15
 xxx 10
-xxx 5
-xxx 2
+DurkoMatko 8
+ 6

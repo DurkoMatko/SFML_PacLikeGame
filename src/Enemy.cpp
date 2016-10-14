@@ -31,8 +31,8 @@ Sprite Enemy::getEnemyPicture(){
 Vector2f Enemy::randomPosition(){
     Vector2f position;
 
-    position.x= 0 + (rand() % (WIDTH - 0 + 1));             //generate random number formula
-    position.y= 0 + (rand() % (HEIGHT - 0 + 1));
+    position.x= MIN_X + (rand() % (MAX_X - MIN_X + 1));             //generate random number formula
+    position.y= MIN_Y + (rand() % (MAX_Y - MIN_Y + 1));
 	return position;
 }
 

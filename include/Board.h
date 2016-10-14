@@ -11,6 +11,11 @@
 #define X_MOVEMENT_LIMIT WIDTH-22
 #define Y_MOVEMENT_LIMIT HEIGHT-21
 
+#define MAX_X 1750
+#define MAX_Y 1100
+#define MIN_X -608
+#define MIN_Y -400
+
 using namespace std;
 using namespace sf;
 
