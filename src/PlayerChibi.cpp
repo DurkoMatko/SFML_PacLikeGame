@@ -1,4 +1,5 @@
 #include "PlayerChibi.h"
+#include "MyException.h"
 #include <SFML/Graphics.hpp>
 #include <string>
 #include <iostream>
@@ -19,8 +20,16 @@ PlayerChibi::~PlayerChibi()
 
 void PlayerChibi::defineChibi(){
     pTexture.setSmooth(true);
-    if(!pTexture.loadFromFile("Images/chibi4.png")){
-        cout << "Not able to load player image" << endl;
+    try{
+        if(!pTexture.loadFromFile("Images/chibi4.png")){
+            throw MyFontException();
+        }
+    }
+    catch(MyFontException& ex){
+        cout << ex.what(1,"chibi4.png") << endl;
+        exit(EXIT_FAILURE);
+        //abort();
+        //_Exit(EXIT_FAILURE);
     }
     playerImage.setTexture(pTexture,true);
     playerImage.setPosition(WIDTH/2 -32,HEIGHT/2 - 55);   //coordinates of left upper corner need to be shifted by half of picture size

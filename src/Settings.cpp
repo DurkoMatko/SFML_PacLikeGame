@@ -1,4 +1,5 @@
 #include "Settings.h"
+#include "MyException.h"
 #include "Board.h"
 #include <iostream>
 #include <sstream>
@@ -12,10 +13,18 @@ Settings::Settings():doc2()
     this->readSettings();               //parses "GameSettings.xml"
 
     escape=false;
-    if(!font.loadFromFile("arial.ttf")){
-        //handle error
+        try{
+        if(!font.loadFromFile("arial.ttf")){
+            throw MyFontException();
+        }
     }
-    cout<<"edede";
+    catch(MyFontException& e){
+        cout << e.what(1,"arial.ttf") << endl;
+        exit(EXIT_FAILURE);
+        //abort();
+        //_Exit(EXIT_FAILURE);
+    }
+
     vector<std::string> fields = {"Enemies number", "Enemies speed","Cancel","Save"};
     selectedItemIndex=0;
 

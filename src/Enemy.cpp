@@ -1,5 +1,6 @@
 #include "Enemy.h"
 #include "Board.h"
+#include "MyException.h"
 
 
 using namespace std;
@@ -8,8 +9,16 @@ using namespace sf;
 Enemy::Enemy()
 {
     eTexture.setSmooth(true);
-    if(!eTexture.loadFromFile("Images/enemy2.png")){
-        cout << "Not able to load enemy image" << endl;
+    try{
+        if(!eTexture.loadFromFile("Images/enemy2.png")){
+            throw MyFontException();
+        }
+    }
+    catch(MyFontException& ex){
+        cout << ex.what(2,"enemy2.png") << endl;
+        exit(EXIT_FAILURE);
+        //abort();
+        //_Exit(EXIT_FAILURE);
     }
     enemyImage.setTexture(eTexture,true);
     enemyImage.setPosition(this->randomPosition());   //coordinates of left upper corner need to be shifted by half of picture size

@@ -2,6 +2,7 @@
 #include "Menu.h"
 #include "Board.h"
 #include "NewHighscore.h"
+#include "MyException.h"
 #include "tinyxml2.h"
 #include "tinyxml.h"
 #include <string>
@@ -34,9 +35,20 @@ void Game::runGame(RenderWindow &window){
     }
 
     ///LOAD FONT
-    if(!font.loadFromFile("arial.ttf")){
-        //handle error
+    try{
+        if(!font.loadFromFile("arial.ttf")){
+            throw MyFontException();
+        }
     }
+    catch(MyFontException& ex){
+        cout << ex.what(1,"arial.ttf") << endl;
+        exit(EXIT_FAILURE);
+        //abort();
+        //_Exit(EXIT_FAILURE);
+    }
+
+
+
 
     ///player picture
     player.defineChibi();
@@ -148,7 +160,6 @@ void Game::runGame(RenderWindow &window){
 
         ///DELETE BULLETS OUTSIDE OF VIEW
         this->checkBulletsInView(board.getView());
-
 
         ///MOVING VIEW
         board.moveViewWithPlayer(player.getRelativePosition(),Vector2u(WIDTH,HEIGHT));

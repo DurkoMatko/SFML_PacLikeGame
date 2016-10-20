@@ -2,12 +2,19 @@
 #include "Game.h"
 #include "Settings.h"
 #include "Highscore.h"
+#include "MyException.h"
 
 
 Menu::Menu()
 {
-    if(!font.loadFromFile("arial.ttf")){
-        //handle error
+    try{
+        if(!font.loadFromFile("arial.ttf")){
+            throw MyFontException();
+        }
+    }
+    catch(MyFontException& e){
+        cout << e.what(1,"arial.ttf") << endl;
+        exit(EXIT_FAILURE);
     }
 
     vector<std::string> fields = {"New game", "Settings","Highscore","Exit"};

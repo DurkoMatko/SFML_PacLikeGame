@@ -3,16 +3,23 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "Board.h"
-
-
+#include "MyException.h"
 
 using namespace std;
 
 Ammunition::Ammunition()
 {
     aTexture.setSmooth(true);
-    if(!aTexture.loadFromFile("Images/ammunition.png")){
-        cout << "Not able to load ammunition image" << endl;
+    try{
+        if(!aTexture.loadFromFile("Images/ammunition.png")){
+            throw MyFontException();
+        }
+    }
+    catch(MyFontException& ex){
+        cout << ex.what(2,"ammunition.png") << endl;
+        exit(EXIT_FAILURE);
+        //abort();
+        //_Exit(EXIT_FAILURE);
     }
     ammunitionImage.setTexture(aTexture,true);
     //ammunitionImage.setPosition(Vector2f(WIDTH/2,HEIGHT/2));

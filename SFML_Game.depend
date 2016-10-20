@@ -17,8 +17,9 @@
 	<string>
 	"Board.h"
 
-1476203904 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/PlayerChibi.cpp
+1476991250 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/PlayerChibi.cpp
 	"PlayerChibi.h"
+	"MyException.h"
 	<SFML/Graphics.hpp>
 	<string>
 	<iostream>
@@ -40,11 +41,12 @@
 	<SFML/Graphics.hpp>
 	<iostream>
 
-1476293801 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/Menu.cpp
+1476991122 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/Menu.cpp
 	"Menu.h"
 	"Game.h"
 	"Settings.h"
 	"Highscore.h"
+	"MyException.h"
 
 1476465056 /home/martin/Documents/Codeblocks_Projects/SFML_Game/include/Game.h
 	"Bullet.h"
@@ -53,11 +55,12 @@
 	"PlayerChibi.h"
 	"Ammunition.h"
 
-1476467881 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/Game.cpp
+1476988624 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/Game.cpp
 	"Game.h"
 	"Menu.h"
 	"Board.h"
 	"NewHighscore.h"
+	"MyException.h"
 	"tinyxml2.h"
 	"tinyxml.h"
 	<string>
@@ -66,9 +69,10 @@
 	<fstream>
 	<set>
 
-1476397055 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/Enemy.cpp
+1476991255 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/Enemy.cpp
 	"Enemy.h"
 	"Board.h"
+	"MyException.h"
 
 1476048024 /home/martin/Documents/Codeblocks_Projects/SFML_Game/include/Enemy.h
 	<SFML/Graphics.hpp>
@@ -83,8 +87,9 @@
 	"Bullet.h"
 	<iostream>
 
-1476287138 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/Settings.cpp
+1476988659 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/Settings.cpp
 	"Settings.h"
+	"MyException.h"
 	"Board.h"
 	<iostream>
 	<sstream>
@@ -125,8 +130,9 @@
 	"Board.h"
 	<fstream>
 
-1476373163 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/Highscore.cpp
+1476988672 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/Highscore.cpp
 	"Highscore.h"
+	"MyException.h"
 	"Board.h"
 	<fstream>
 
@@ -141,9 +147,19 @@
 1476378032 /home/martin/Documents/Codeblocks_Projects/SFML_Game/include/Ammunition.h
 	<SFML/Graphics.hpp>
 
-1476397029 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/Ammunition.cpp
+1476991243 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/Ammunition.cpp
 	"Ammunition.h"
 	<SFML/Graphics.hpp>
 	<iostream>
 	"Board.h"
+	"MyException.h"
+
+1476991287 source:/home/martin/Documents/Codeblocks_Projects/SFML_Game/src/MyException.cpp
+	"MyException.h"
+	<string>
+	<iostream>
+
+1476988722 /home/martin/Documents/Codeblocks_Projects/SFML_Game/include/MyException.h
+	<exception>
+	<string>
 

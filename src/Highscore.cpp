@@ -1,4 +1,5 @@
 #include "Highscore.h"
+#include "MyException.h"
 #include "Board.h"
 #include <fstream>
 
@@ -8,8 +9,16 @@ Highscore::Highscore():lowerSpeedButton(WIDTH/2-150,HEIGHT/NUMBER_OF_HIGHSCORES+
 {
     escape=false;
     atSpeed=1;
-    if(!font.loadFromFile("arial.ttf")){
-        //handle error
+    try{
+        if(!font.loadFromFile("arial.ttf")){
+            throw MyFontException();
+        }
+    }
+    catch(MyFontException& e){
+        cout << e.what(1,"aria.ttf") << endl;
+        exit(EXIT_FAILURE);
+        //abort();
+        //_Exit(EXIT_FAILURE);
     }
 
 
